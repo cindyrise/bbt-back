@@ -7,14 +7,20 @@ const db = {
 }
 
 const baseApi = 'api/v1'
-const secret = 'airchat-sec'
 const server={
   baseApi : 'api/v1',
   port:3003,
-  secret : 'airchat-sec'
+	AppID : 'airchat-sec',
+	AppSecret:'airchat-sec',
+	domain:'http://.com',
+	adPath:'public/images/',
+	iconPath:'public/icons/',
+	baiduAK:'Yetmv0EGFUHPDGEPmiyY83vug0bP1ZDU',
+	baiduIp:`http://api.map.baidu.com/location/ip?ak=Yetmv0EGFUHPDGEPmiyY83vug0bP1ZDU`,
+	baiduLocation:`http://api.map.baidu.com/geocoder/v2/?ak=Yetmv0EGFUHPDGEPmiyY83vug0bP1ZDU&output=json&pois=1&location=`
 }
 module.exports = {
 	db,
-  baseApi,
-  server
+	server,
+	baseApi,
 }

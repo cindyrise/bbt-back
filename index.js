@@ -1,14 +1,13 @@
 const Koa = require('koa');
 const path = require('path')
-const bodyParser = require('koa-bodyparser');
 const ejs = require('ejs');
 const session = require('koa-session-minimal');
 const MysqlStore = require('koa-mysql-session');
 const conf  = require('./config/index');
 const router = require('koa-router')
 const views = require('koa-views')
-// const koaStatic = require('koa-static')
 const staticCache = require('koa-static-cache')
+const koaBody = require('koa-body');
 const app = new Koa()
 
 
@@ -27,15 +26,7 @@ app.use(session({
 }))
 
 
-// 配置静态资源加载中间件
-// app.use(koaStatic(
-//   path.join(__dirname , './public')
-// ))
-// 缓存
-app.use(staticCache(path.join(__dirname, './public'), { dynamic: true }, {
-  maxAge: 365 * 24 * 60 * 60
-}))
-app.use(staticCache(path.join(__dirname, './images'), { dynamic: true }, {
+app.use(staticCache(path.join(__dirname, './public/images'), { dynamic: true }, {
   maxAge: 365 * 24 * 60 * 60
 }))
 
@@ -43,17 +34,21 @@ app.use(staticCache(path.join(__dirname, './images'), { dynamic: true }, {
 app.use(views(path.join(__dirname, './views'), {
   extension: 'ejs'
 }))
-app.use(bodyParser({
-  formLimit: '1mb'
-}))
 
-app.use(require('./api/login/router.js').routes())
-app.use(require('./api/home/router.js').routes())
-app.use(require('./api/ad/router.js').routes())
-app.use(require('./api/icon/router.js').routes())
-app.use(require('./api/site/router.js').routes())
-app.use(require('./api/user/router.js').routes())
+app.use(koaBody({ multipart: true }));
+
+//前端地址
+app.use(require('./api/front/home/router.js').routes())
+
+//后端地址
+app.use(require('./api/back/login/router.js').routes())
+app.use(require('./api/back/home/router.js').routes())
+app.use(require('./api/back/ad/router.js').routes())
+app.use(require('./api/back/icon/router.js').routes())
+app.use(require('./api/back/site/router.js').routes())
+app.use(require('./api/back/user/router.js').routes())
+
+
 
 app.listen(conf.server.port)
-
 console.log(`listening on port ${conf.server.port}`)
