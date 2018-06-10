@@ -34,6 +34,7 @@ exports.getAdList=async ctx => {
 exports.getIconList=async ctx => {
     let {city_code,dict_code}=ctx.request.body;
     let ret=  await model.getIconList([city_code,dict_code]);
+    console.log(ret,'tet');
     ctx.body = {
      code: 200,
      data: ret,

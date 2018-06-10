@@ -8,8 +8,9 @@ const db = {
 
 const baseApi = 'api/v1'
 const server={
-  baseApi : 'api/v1',
-  port:3003,
+	backApi : 'api/back/v1',
+	frontApi:"api/front/v1",
+    port:3003,
 	AppID : 'airchat-sec',
 	AppSecret:'airchat-sec',
 	domain:'http://.com',

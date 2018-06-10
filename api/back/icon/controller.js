@@ -41,51 +41,20 @@ exports.createIcon=async ctx=>{
     })
 }
 exports.updateIcon = async ctx => {
-    let { name, pwd } = ctx.request.body
-    await model.login(name)
-        .then(result => {
-            let res = result
-            if (res.length && name === res[0]['name'] && md5(pwd) === res[0]['pwd']) {
-                ctx.session = {
-                    user: res[0]['name'],
-                    id: res[0]['id']
-                }
-                ctx.body = {
-                    code: 200,
-                    message: '登录成功'
-                }
-                console.log('ctx.session.id', ctx.session.id)
-                console.log('session', ctx.session)
-                console.log('登录成功')
-            } else {
-                ctx.body = {
-                    code: 500,
-                    message: '用户名或密码错误'
-                }
-                console.log('用户名或密码错误!')
-            }
-        }).catch(err => {
-            console.log(err)
-        })
+    await model.getIconList('')
+    .then(res=>{
+      ctx.body = {
+          code: 200,
+          data:res,
+          message: '登录成功'
+      }
+    })
 }
 
 exports.getSiteOption = async ctx => {
     let {dict_code}=ctx.request.body;
     console.log(ctx.request.body,'dict_code');
     await model.getSiteOption(dict_code)
-          .then(res=>{
-            ctx.body = {
-                code: 200,
-                data:res,
-                message: '查询成功'
-            }
-          })
-}
-
-exports.getIcons = async ctx => {
-    let {dict_code,city_code}=ctx.request.body;
-    let arr=[city_name+'%',dict_code];
-    await model.getIcons(arr)
           .then(res=>{
             ctx.body = {
                 code: 200,

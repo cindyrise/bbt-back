@@ -1,7 +1,7 @@
 const router = require('koa-router')();
 const controller = require('./controller')
-const frontApi = require('../../../config/index').baseApi
-router.prefix(`/${frontApi}`)
+const server = require('../../../config/index').server
+router.prefix(`/${server.frontApi}`)
 router.post('/getLocation', controller.getLocation)
 router.post('/getAdList', controller.getAdList)
 router.post('/getIconList', controller.getIconList)

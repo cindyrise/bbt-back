@@ -24,16 +24,9 @@ let getSiteOption =function(arr){
     return query( _sql,arr)
 }
 
-let getIcons =function(arr){  //h5页面获取icon列表
-    let _sql=`select a.code,a.color,a.icon_url,a.type,c.url,c.name as url_name 
-    from icon a,city b,site c ,dict d 
-    where a.city_code=b.code and b.name like ? and a.dict_code = ? and a.site_id=c.id ;`
-    return query( _sql,arr)
-}
 module.exports = {
     getIconList,
     createIcon,
     updateIcon,
-    getSiteOption,
-    getIcons
+    getSiteOption
 };

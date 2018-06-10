@@ -4,10 +4,6 @@ const checkNotLogin = require('../../../middlewares/check.js').checkNotLogin
 const checkLogin = require('../../../middlewares/check.js').checkLogin
 
 exports.getUser = async ctx => {
-    //await checkNotLogin(ctx)
-    // await ctx.render('login', {
-    //     session: ctx.session,
-    // })
     ctx.body = {
         code: 200,
         message: '登录成功'
@@ -40,10 +36,4 @@ exports.updateUser = async ctx => {
         }).catch(err => {
             console.log(err)
         })
-}
-
-exports.loginOut=async ctx=>{
-    ctx.session = null;
-    ctx.body = true;
-    console.log('登出成功')
 }

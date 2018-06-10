@@ -1,7 +1,7 @@
 const router = require('koa-router')();
 const controller = require('./controller')
-const backApi = require('../../../config/index').backApi
-router.prefix(`/${backApi}`)
+const server = require('../../../config/index').server
+router.prefix(`/${server.backApi}`)
 router.post('/getSite', controller.getSite)
 router.post('/createSite', controller.createSite)
 router.post('/updateSite', controller.updateSite)

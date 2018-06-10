@@ -29,6 +29,9 @@ app.use(session({
 app.use(staticCache(path.join(__dirname, './public/images'), { dynamic: true }, {
   maxAge: 365 * 24 * 60 * 60
 }))
+app.use(staticCache(path.join(__dirname, './public/icons'), { dynamic: true }, {
+  maxAge: 365 * 24 * 60 * 60
+}))
 
 // 配置服务端模板渲染引擎中间件
 app.use(views(path.join(__dirname, './views'), {
@@ -41,13 +44,13 @@ app.use(koaBody({ multipart: true }));
 app.use(require('./api/front/home/router.js').routes())
 
 //后端地址
+
 app.use(require('./api/back/login/router.js').routes())
 app.use(require('./api/back/home/router.js').routes())
 app.use(require('./api/back/ad/router.js').routes())
 app.use(require('./api/back/icon/router.js').routes())
 app.use(require('./api/back/site/router.js').routes())
 app.use(require('./api/back/user/router.js').routes())
-
 
 
 app.listen(conf.server.port)

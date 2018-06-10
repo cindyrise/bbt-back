@@ -8,7 +8,7 @@ const { query } = require("../../../utils/db");
  *  @return  avator  发送人头像
  */
 let getAd= function(city_name) {
-    let _sql = `select a.name as city_name,b.id,b.name,b.img_url,b.sort,b.remark from city a ,ad b where a.name like ${city_name}% and b.city_code=a.code order by b.sort;`
+    let _sql = `select a.name as city_name,b.id,b.name,b.img_url,b.sort,b.remark from city a ,ad b where  b.city_code=a.code order by b.sort;`
     return query( _sql,'')
 };
 let updateAd= (arr) => {

@@ -1,8 +1,6 @@
 const model = require('./model.js')
 const checkNotLogin = require('../../../middlewares/check.js').checkNotLogin
 const checkLogin = require('../../../middlewares/check.js').checkLogin
-const server = require('../../../config/index').server
-let request = require('request');
 
 exports.getHome = async ctx => {
     await ctx.render('home', {
@@ -45,23 +43,4 @@ exports.getDictType = async ctx => {
         data: ret,
         message: '查询成功'
     }
-}
-exports.getLocation = async ctx => {
-   let {x,y}=ctx.request.body;
-   let city_name=await new Promise((resolve, reject)=> {
-    request.get({ url:server.baiduLocation+`${y},${x}`},
-    (error, response, body)=>{
-     if (!error && response.statusCode == 200) {
-         let ret= JSON.parse(body);
-         let {province,city}=ret.result.addressComponent;
-         resolve(city);
-        }
-    })
-   });
-   let ret=  await model.getCityByName(city_name);
-   ctx.body = {
-    code: 200,
-    data: ret[0],
-    message: '查询成功'
-  }
 }

@@ -11,9 +11,8 @@ let getAdList= function(city_code) {
 };
 
 let getIconList =function(arr){  
-    let _sql=`select a.code,a.color,a.icon_url,a.type,c.url,c.name as url_name 
-    from icon a,site c ,dict d 
-    where a.city_code= ? and a.dict_code = ? and a.site_id=c.id ;`
+    let _sql=`SELECT a.id,a.class_name, a.dict_code,a.color,a.icon_url,a.type,a.city_code,s.name,s.url 
+    FROM icon a  INNER JOIN site s ON a.site_id=s.id  where a.city_code= ? and a.dict_code =?;`
     return query( _sql,arr)
 }
 let getDictByCode=function(code){  
