@@ -23,7 +23,7 @@ exports.login = async ctx => {
         }
     }else{
         ctx.body = {
-            code: 200,
+            code: 401,
             result: false,
             message: '登录失败'
         }
