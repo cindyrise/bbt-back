@@ -14,8 +14,8 @@ const server={
 	AppID : 'airchat-sec',
 	AppSecret:'airchat-sec',
 	domain:'http://.com',
-	adPath:'public/images/',
-	iconPath:'public/icons/',
+	adPath:'./public/images/',
+	iconPath:'./public/icons/',
 	baiduAK:'Yetmv0EGFUHPDGEPmiyY83vug0bP1ZDU',
 	baiduIp:`http://api.map.baidu.com/location/ip?ak=Yetmv0EGFUHPDGEPmiyY83vug0bP1ZDU`,
 	baiduLocation:`http://api.map.baidu.com/geocoder/v2/?ak=Yetmv0EGFUHPDGEPmiyY83vug0bP1ZDU&output=json&pois=1&location=`
